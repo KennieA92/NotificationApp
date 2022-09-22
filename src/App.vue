@@ -1,8 +1,7 @@
 <template>
-  <div class="relative flex overflow-x-hidden">
-
-    <NavigationComponent />
-    <router-view />
+  <div class="relative flex overflow-x-hidden ">
+    <NavigationComponent class="min-w-9/12 lg:w-3/12" />
+    <router-view class="w-full lg:w-9/12" />
   </div>
 </template>
 <script>

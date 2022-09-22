@@ -1,7 +1,7 @@
 <template>
-    <div class="h-screen flex min-w-9/12 lg:w-3/12">
-        <button
-            class="fixed z-30 lg:hidden peer top-4 right-4 h-14 w-14 rounded-full bg-slate-700 hover:bg-slate-800 focus:bg-slate-70 transition mb-[660px]">
+    <div class="h-screen flex">
+        <button @click="toggle()"
+            class="fixed z-30 lg:hidden peer top-4 right-4 h-14 w-14 rounded-full bg-slate-700 hover:bg-slate-800 focus:bg-slate-700">
             <span class="text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 m-auto" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -9,72 +9,77 @@
                 </svg>
             </span>
         </button>
-        <div
-            class="z-20 lg:block fixed top-0 lg:left-0 -left-96 h-screen w-9/12 lg:w-3/12 bg-no-repeat bg-cover bg-center bg-navigation backdrop-brightness-0 shadow-2xl peer-focus:left-0 peer:transition ease-out delay-150 duration-200">
-            <nav role="navigation" class="px-[10%] py-[15%] bg-black bg-opacity-30">
+        <div :style="isOpen ? showHambuger : null"
+            class="z-20 hidden lg:block fixed top-0 lg:left-0 h-screen w-9/12 lg:w-3/12 bg-no-repeat bg-cover bg-center bg-navigation backdrop-brightness-0 shadow-2xl ">
+            <nav role="navigation"
+                class="flex flex-wrap flex-col justify-around content-center px-[10%] py-[15%] min-h-[100vh] backdrop-brightness-[0.75] ">
                 <div class="flex justify-center gap-4 pb-4">
                     <img src="@/assets/logo.png" alt="" class="max-w-[200px]">
                 </div>
-                <div class="mt-4 -mx-4 relative overflow-y-auto overflow-x-hidden h-[85vh]">
-                    <span class="uppercase px-4 text-gray-500"> Docs</span>
-                    <ul class="space-y-4 mb-12 px-4 mt-8">
+                <div class="flex justify-center flex-wrap relative overflow-y-hidden overflow-x-hidden">
+                    <ul class="space-y-2 px-4 place-items-center">
                         <li>
-                            <a href="" class="flex gap-4 text-gray-600 hover:text-gray-800 transition"><img src=""
-                                    alt="">Documentation</a>
+                            <a
+                                class="flex justify-center text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out ">Forside
+
+                                <!-- <svg sidebar-toggle-item class="hidden md:block w-6 h-6" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg> -->
+                            </a>
+                            <!-- <ul class="hidden peer-focus:flex">
+                                <li>eraujreaiju</li>
+                            </ul> -->
+                        </li>
+                        <li class="content-center">
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Madboder</a>
                         </li>
                         <li>
-                            <a href="" class="flex gap-4 text-gray-600 hover:text-gray-800 transition"><img src=""
-                                    alt="">Playground</a>
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Take
+                                Away</a>
                         </li>
                         <li>
-                            <a href="" class="flex gap-4 text-gray-600 hover:text-gray-800 transition"><img src=""
-                                    alt="">Components</a>
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Book
+                                Bord</a>
                         </li>
                         <li>
-                            <a href="" class="flex gap-4 text-gray-600 hover:text-gray-800 transition"><img src=""
-                                    alt="">Community</a>
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Selskaber</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Info</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                class="flex justify-center gap-4 text-tertiary font-roboto tracking-wider uppercase text-2xl hover:text-accent transition hover:scale-110 ease-in-out  ">Kontakt
+                                os</a>
                         </li>
 
                     </ul>
-                    <ul class="space-y-4">
-                        <li class="pr-2">
-                            <div class="py-2 px-4 text-gray-700 uppercase">
-                                <a href="" class="block">Getting Started</a>
-                            </div>
-                            <ul class="text-sm pb-24">
-                                <li>
-                                    <a href=""
-                                        class="block py-2 px-5 rounded bg-cyan-500 bg-opacity-10 hover:bg-opacity-20 text-cyan-500">
-                                        Installation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="block py-2 px-5 hover:text-gray-500 transition">
-                                        Programming
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="block py-2 px-5 hover:text-gray-500 transition">
-                                        JavaScript
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="block py-2 px-5 hover:text-gray-500 transition">
-                                        Unity
-                                    </a>
-                                </li>
 
-                            </ul>
-                        </li>
-                    </ul>
+                </div>
+                <div>
+                    <span class="text-tertiary">© 2022 <a href="https://esbjergstreetfood.com/">Esbjerg Street
+                            Food</a></span>
                 </div>
             </nav>
         </div>
     </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref } from 'vue'
+const isOpen = ref(false);
+const showHambuger = ref('display: block;');
+
+const toggle = () => {
+    isOpen.value = !isOpen.value;
 
 }
 </script>
