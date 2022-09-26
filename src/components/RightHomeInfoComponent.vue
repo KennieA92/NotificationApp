@@ -1,6 +1,6 @@
 <template>
     <section id="home-info-section">
-        <div class="h-[45vh] w-auto bg-black flex-col">
+        <div class="h-[45vh] w-auto bg-white flex-col">
             <div class="flex flex-col ">
                 reaeraera
             </div>

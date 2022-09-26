@@ -14,7 +14,7 @@
             <nav role="navigation"
                 class="flex flex-wrap flex-col justify-around content-center px-[10%] py-[15%] min-h-[100vh] backdrop-brightness-[0.75] ">
                 <div class="flex justify-center gap-4 pb-4">
-                    <img src="@/assets/logo.png" alt="" class="max-w-[200px]">
+                    <router-link to="/"><img src="@/assets/logo.png" alt="" class="max-w-[200px]"></router-link>
                 </div>
                 <div class="flex justify-center flex-wrap relative overflow-y-hidden overflow-x-hidden">
                     <ul class="space-y-2 px-4 place-items-center">
