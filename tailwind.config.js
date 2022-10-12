@@ -4,22 +4,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary": "#3b82f6",
-        "secondary": "#6b7280",
-        "tertiary": "#fff",
-        "accent": "#F05130",
-        "light-accent": "#E48547",
+        "primary": "#1A1919",
+        "secondary": "#171616",
+        "tertiary": "#0B0B0B",
+        "text-color": "#fffbfe",
+        "accent": "#104d7c",
       },
       backgroundImage: {
-        "navigation": "url('/src/assets/images/navigation.png')",
-        "banner": "url('/src/assets/images/banner.png')",
+        "banner": "url('/src/assets/images/banner.webp')",
       }
 
     },
     fontFamily: {
       'navigation': ['Roboto', 'sans-serif'],
       'body': ['Open Sans', 'sans-serif'],
-      'headers': ['Patrick Hand', 'cursive'],
+      'headers': ['Orbitron', 'cursive'],
     }
   },
   plugins: [],

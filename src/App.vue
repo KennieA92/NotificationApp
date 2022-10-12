@@ -1,8 +1,8 @@
 <template>
-  <div class="relative flex overflow-x-hidden ">
-    <NavigationComponent class="min-w-9/12 lg:w-3/12" />
+  <div class="relative flex overflow-x-hidden bg-primary">
+    <NavigationComponent class="min-w-9/12 lg:w-2/12" />
     <Suspense>
-      <router-view class="w-full lg:w-9/12" />
+      <router-view class="w-full lg:w-10/12" />
     </Suspense>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import NavigationComponent from "./components/NavigationComponent.vue";
 export default {
   name: "App",
-  components: { NavigationComponent }
+  components: { NavigationComponent },
 };
 </script>
 
