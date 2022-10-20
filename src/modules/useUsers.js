@@ -1,5 +1,5 @@
 import { auth } from '../firebase'
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -41,6 +41,28 @@ const useUsers = () => {
         });
     }
 
+    const registerUser = () => {
+        createUserWithEmailAndPassword(auth, email.value, password.value)
+            .then(() => {
+                // Signed in 
+                router.push('/');
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Wrong password or email.');
+                } else if (errorCode === 'auth/email-already-in-use') {
+                    alert('Email already in use.');
+                } else if (errorCode === 'auth/invalid-email') {
+                    alert('Invalid email.');
+                } else {
+                    alert(errorMessage);
+                }
+            });
+    }
 
 
     const isLoggedIn = ref(false);
@@ -60,6 +82,7 @@ const useUsers = () => {
     return {
         login,
         logout,
+        registerUser,
         isLoggedIn,
         isUserLoggedIn,
         email,
