@@ -1,0 +1,72 @@
+<template>
+  <div class="bg-text-color min-h-screen flex flex-col items-center justify-between text-4xl ">
+    <div class="header-container flex flex-col justify-center items-center pt-10 gap-5 md:w-1/2 md:text-center w-4/6">
+      <h1>Memory Game</h1>
+      <p class="text-lg">
+        You will see a card. Then you will have to remember that card. Then select that
+        card, between other cards.
+      </p>
+      <p class="text-lg">When you are ready. Click the Button below.</p>
+      <button class="bg-blue-500 hover:bg-blue-700 text-text-color text-2xl font-bold mb-5 py-2 px-4 rounded"
+        @click="startGame()" v-if="!isStarted">
+        Start Game
+      </button>
+    </div>
+    <div class="flex body-container w-full justify-center">
+      <div v-if="isStarted" class="flex flex-wrap justify-center gap-3 w-screen md:w-4/5 py-5">
+        <img class="w-[30vw] object-cover" :src="`${singleImage.url}`" alt="" v-if="isFirstImage && singleImage" />
+        <img class="w-1/4 md:w-[15vw] object-cover" :src="`${images.url}`" v-else v-for="images in memoryImages"
+          :key="images.id" @click="checkImage(images)" />
+      </div>
+      <div v-else class="h-64"></div>
+    </div>
+
+    <div
+      class="footer-container flex flex-col justify-center items-center flex-wrap w-4/5 md:w-3/5 text-2xl gap-5 pb-10">
+      <label class="form-label self-start" for="customFile">Upload your own image</label>
+      <input @change="uploadFile" type="file" class="self-start" id="customFile" />
+    </div>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+      @click="deleteMemoryImages">
+      Delete Images
+    </button>
+  </div>
+</template>
+
+<script setup>
+import useMemoryStorage from "@/modules/useMemoryStorage.js";
+import useMemoryImages from "@/modules/useMemoryImages.js";
+import { ref, onMounted } from "vue";
+
+const isStarted = ref(false);
+const isFirstImage = ref(true);
+const { uploadFile } = useMemoryStorage();
+const { memoryImages, getMemoryImages, deleteMemoryImages } = useMemoryImages();
+const singleImage = ref(null);
+onMounted(() => {
+  getMemoryImages();
+});
+
+const startGame = () => {
+  isStarted.value = true;
+  singleImage.value =
+    memoryImages.value[Math.floor(Math.random() * memoryImages.value.length)];
+  setTimeout(() => (isFirstImage.value = false), 1000);
+};
+
+const checkImage = (image) => {
+  if (image.id === singleImage.value.id) {
+    alert("You won!");
+    isStarted.value = false;
+    isFirstImage.value = true;
+  } else {
+    alert("You lost!");
+    isStarted.value = false;
+    isFirstImage.value = true;
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>

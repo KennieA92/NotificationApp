@@ -1,19 +1,24 @@
 import { auth } from '../firebase'
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+
 
 const useUsers = () => {
     const email = ref('');
     const password = ref('');
     const user = ref(null);
+    const router = useRouter();
 
     const login = () => {
         signInWithEmailAndPassword(auth, email.value, password.value)
             .then((userCredential) => {
                 user.value = userCredential.user;
                 console.log("userInfo: " + user.value.email);
-                localStorage.setItem('userLoginInfoFireBase', user.value.email);
-                console.log("userLoginInfoFireBase: " + localStorage.getItem('userLoginInfoFireBase'));
+                router.push('/');
+                //localStorage.setItem('userLoginInfoFireBase', user.value.email);
+                //console.log("userLoginInfoFireBase: " + localStorage.getItem('userLoginInfoFireBase'));
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -39,7 +44,7 @@ const useUsers = () => {
 
 
     const isLoggedIn = ref(false);
-    const isLoggedInTest = () => {
+    const isUserLoggedIn = () => {
         user.value = auth.currentUser
         onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -56,7 +61,7 @@ const useUsers = () => {
         login,
         logout,
         isLoggedIn,
-        isLoggedInTest,
+        isUserLoggedIn,
         email,
         password,
         user

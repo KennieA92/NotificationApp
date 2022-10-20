@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/about',
@@ -36,7 +36,15 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterView.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterView.vue')
+  },
+  {
+    path: '/explore',
+    name: 'explore',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/ExploreView.vue'),
     meta: {
       requiresAuth: true
     }
@@ -52,7 +60,7 @@ const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeEventListener = onAuthStateChanged(
       auth,
-      (user) => {        
+      (user) => {
         removeEventListener();
         resolve(user);
       },

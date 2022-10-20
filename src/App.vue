@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex overflow-x-hidden bg-primary">
+  <div class="relative flex bg-primary">
     <NavigationComponent class="min-w-9/12 lg:w-2/12" />
     <Suspense>
       <router-view class="w-full lg:w-10/12" />
