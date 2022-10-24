@@ -59,6 +59,28 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/productDetails/:id',
+    name: 'productDetails',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Shopping/ProductDetailsView.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/workinprogress',
+    name: 'workinprogress',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/WorkInProgressView.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
