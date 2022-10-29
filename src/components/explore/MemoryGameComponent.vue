@@ -24,12 +24,40 @@
     <div
       class="footer-container flex flex-col justify-center items-center flex-wrap w-4/5 md:w-3/5 text-2xl gap-5 pb-10">
       <label class="form-label self-start" for="customFile">Upload your own image</label>
-      <input @change="uploadFile" type="file" class="self-start" id="customFile" />
+      <input @change="uploadFile" type="file" class="self-start w-full" id="customFile" />
     </div>
     <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
-      @click="deleteMemoryImages">
+      @click="isOpen = true">
       Delete Images
     </button>
+    <teleport to="body">
+      <div
+        class="modal backdrop-brightness-50 fixed w-screen h-screen top-0 md:left-[8.33334%] flex justify-center items-center z-50"
+        v-if="isOpen">
+        <div
+          class="md:w-1/3 w-10/12 h-1/3 bg-primary shadow-xl rounded flex flex-col justify-center items-center text-text-color ">
+          <div class="text-center">
+
+            <h1 class=" text-xl my-4"> Are you sure you want to delete all Images?
+            </h1>
+            <h2>Once deleted, it cannot
+              be
+              undone.</h2>
+          </div>
+          <div class="flex justify-center items-center gap-5 my-5">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+              @click="isOpen = false">
+              Cancel
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+              @click="deleteMemoryImages(); isOpen = false, isStarted = false">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </teleport>
+
   </div>
 </template>
 
@@ -40,6 +68,7 @@ import { ref, onMounted } from "vue";
 
 const isStarted = ref(false);
 const isFirstImage = ref(true);
+const isOpen = ref(false);
 const { uploadFile } = useMemoryStorage();
 const { memoryImages, getMemoryImages, deleteMemoryImages } = useMemoryImages();
 const singleImage = ref(null);

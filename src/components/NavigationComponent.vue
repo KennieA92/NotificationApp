@@ -40,12 +40,12 @@
                   class="flex justify-center gap-4 text-text-color font-headers tracking-wider uppercase text-4xl md:text-2xl hover:text-accent transition hover:scale-110 ease-in-out">
                   About</router-link>
               </li>
-              <li>
+              <li class="hidden md:block">
                 <router-link to="workinprogress"
                   class="flex justify-center gap-4 text-text-color font-headers tracking-wider uppercase text-4xl md:text-2xl hover:text-accent transition hover:scale-110 ease-in-out">
                   WIP</router-link>
               </li>
-              <li class="pt-10 md:pt-0">
+              <li>
                 <router-link to="/"
                   class="flex justify-center gap-4 text-text-color font-headers tracking-wider uppercase text-4xl md:text-2xl hover:text-accent transition hover:scale-110 ease-in-out"
                   v-if="isLoggedIn" @click="logout">Logout</router-link>

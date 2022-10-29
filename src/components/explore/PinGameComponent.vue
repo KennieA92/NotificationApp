@@ -14,15 +14,43 @@
       <h2>Place a pin by clicking on the square!</h2>
       <div class="w-80 h-80 bg-slate-900 relative" @click="clicked">
         <div v-for="pin in pins" :key="pin.id" class="absolute w-4 h-4 bg-red-500 z-10"
-          :style="{ left: `${pin.xPosition}px`, top: `${pin.yPosition}px` } " @click="ThisDiv(pin, $event)">
+          :style="{ left: `${pin.xPosition}px`, top: `${pin.yPosition}px` }" @click="ThisDiv(pin, $event)">
           <div v-if="isOpen">
           </div>
         </div>
       </div>
       <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
-        @click="deletePins">
+        @click="isOpen = true">
         Clear Pins
       </button>
+      <!-- Could be a component -->
+      <teleport to="body">
+        <div
+          class="modal backdrop-brightness-50 fixed w-screen h-screen top-0 md:left-[8.33334%] flex justify-center items-center z-50"
+          v-if="isOpen">
+          <div
+            class="md:w-1/3 w-10/12 h-1/3 bg-primary shadow-xl rounded flex flex-col justify-around items-center text-text-color ">
+            <div class="text-center">
+
+              <h1 class=" text-2xl my-4"> Are you sure you want to delete all Pins?
+              </h1>
+              <h2>Once deleted, it cannot
+                be
+                undone.</h2>
+            </div>
+            <div class="flex justify-center items-center gap-5 my-5">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+                @click="isOpen = false">
+                Cancel
+              </button>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+                @click="deletePins(); isOpen = false">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </teleport>
     </div>
   </div>
 </template>

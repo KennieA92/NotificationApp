@@ -79,7 +79,8 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/WorkInProgressView.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresDesktop: true
     }
   }
 ]
@@ -102,9 +103,19 @@ const getCurrentUser = () => {
   });
 }
 
+
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-  if (requiresAuth) {
+  const requiresDesktop = to.matched.some((record) => record.meta.requiresDesktop);
+  if (requiresAuth && requiresDesktop) {
+    if (await getCurrentUser() && window.innerWidth > 768) {
+      next();
+    }
+    else {
+      next('/');
+    }
+  }
+  else if (requiresAuth) {
     if (await getCurrentUser()) {
       next();
     }
