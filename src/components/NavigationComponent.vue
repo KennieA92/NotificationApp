@@ -40,7 +40,7 @@
                   class="flex justify-center gap-4 text-text-color font-headers tracking-wider uppercase text-4xl md:text-2xl hover:text-accent transition hover:scale-110 ease-in-out">
                   About</router-link>
               </li>
-              <li class="hidden md:block">
+              <li class="hidden xl:block">
                 <router-link to="workinprogress"
                   class="flex justify-center gap-4 text-text-color font-headers tracking-wider uppercase text-4xl md:text-2xl hover:text-accent transition hover:scale-110 ease-in-out">
                   WIP</router-link>

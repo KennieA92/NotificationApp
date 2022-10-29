@@ -14,7 +14,7 @@
     <div class="snap-start bg-tertiary h-1/2 flex items-center text-text-color justify-center text-4xl">
       <h1> Read what we are all about! </h1>
     </div>
-    <div class="snap-start bg-text-color h-1/2 flex items-center text-center justify-center text-4xl">
+    <div class="hidden xl:flex snap-start bg-text-color h-1/2 items-center text-center justify-center text-4xl">
       <h1> Keep updated with our work in progress projects! </h1>
     </div>
   </section>

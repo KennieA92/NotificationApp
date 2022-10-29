@@ -16,7 +16,8 @@
             <button class="basis-1/4 bg-accent font-headers text-xl text-white py-2 mx-10 my-4 rounded-md">
               About
             </button>
-            <button class="basis-1/4 bg-accent font-headers text-xl text-white py-2 mx-10 my-4 rounded-md">
+            <button
+              class="basis-1/4 hidden xl:block bg-accent font-headers text-xl text-white py-2 mx-10 my-4 rounded-md">
               WIP
             </button>
           </div>

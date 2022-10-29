@@ -108,7 +108,7 @@ router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const requiresDesktop = to.matched.some((record) => record.meta.requiresDesktop);
   if (requiresAuth && requiresDesktop) {
-    if (await getCurrentUser() && window.innerWidth > 768) {
+    if (await getCurrentUser() && window.innerWidth > 1280) {
       next();
     }
     else {
