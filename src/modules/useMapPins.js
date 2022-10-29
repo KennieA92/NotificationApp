@@ -1,12 +1,10 @@
 import { db, auth } from '../firebase'
-import { collection, onSnapshot, addDoc, where, query } from "firebase/firestore";
+import { collection, onSnapshot, addDoc, deleteDoc, updateDoc, doc, where, query } from "firebase/firestore";
 import { ref } from 'vue';
-import useMapNotes from '@/modules/useMapNotes';
 
 const useMapPins = () => {
     const mapPins = ref([]);
     const pinsDataRef = collection(db, "mappins");
-    const { addMapNote } = useMapNotes();
 
 
 
@@ -29,15 +27,31 @@ const useMapPins = () => {
             yPosition: mapPin.value.yPosition,
             mapid: mapPin.value.id,
             author: auth.currentUser.uid
-        }).then((docRef) => {
-            addMapNote(docRef.id);
         })
     }
+
+    const deleteMapPin = async (mapPin) => {
+        if (mapPin.author === auth.currentUser.uid) {
+            await deleteDoc(doc(pinsDataRef, mapPin.id));
+        }
+    }
+
+    const editMapPin = async (mapPin) => {
+        await updateDoc(doc(pinsDataRef, mapPin.id), {
+            name: mapPin.name,
+            location: mapPin.location,
+            description: mapPin.description,
+            notes: mapPin.notes
+
+        });
+    };
 
     return {
         mapPins,
         getMapPinsData,
-        addMapPin
+        addMapPin,
+        deleteMapPin,
+        editMapPin
 
     }
 }

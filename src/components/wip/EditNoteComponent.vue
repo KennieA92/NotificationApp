@@ -1,25 +1,66 @@
 <template>
   <div
-    class="md:w-1/3 w-10/12 h-1/3 bg-primary shadow-xl rounded flex flex-col justify-around items-center text-text-color"
+    class="md:w-4/5 w-10/12 h-5/6 bg-primary shadow-xl rounded flex justify-between items-center flex-col text-text-color"
   >
-    <div class="text-center">
-      <h1 class="text-2xl my-4">
-        Are you sure you want to delete all Pins? {{ props.mapNote }}
-      </h1>
-      <h2>Once deleted, it cannot be undone.</h2>
-    </div>
+    <h1 class="text-2xl m-4">Update your notes for {{ mapPin.name }}</h1>
+    <input
+      class="w-10/12 p-2 rounded text-primary focus:outline-none"
+      type="text"
+      placeholder="Name"
+      v-model="mapPin.name"
+    />
+    <p>
+      Name:
+      {{ mapPin.name }}
+    </p>
+    <input
+      class="w-10/12 p-2 rounded text-primary focus:outline-none"
+      type="text"
+      placeholder="Location"
+      v-model="mapPin.location"
+    />
+    <p>
+      Location:
+      {{ mapPin.location }}
+    </p>
+    <input
+      class="w-10/12 p-4 rounded text-primary focus:outline-none"
+      type="text"
+      placeholder="Description"
+      v-model="mapPin.description"
+    />
+    <p>
+      Description:
+      {{ mapPin.description }}
+    </p>
+    <textarea
+      class="w-10/12 p-4 rounded text-primary focus:outline-none"
+      v-model="mapPin.notes"
+      placeholder="Add your notes here"
+    ></textarea>
+    <p>Notes: {{ mapPin.notes }}</p>
+
     <div class="flex justify-center items-center gap-5 my-5">
       <button
-        class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+        class="bg-green-500 hover:bg-green-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+        @click="
+          editMapPin(mapPin);
+          $emit('close');
+        "
+      >
+        Update
+      </button>
+      <button
+        class="bg-accent hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
         @click="$emit('close')"
       >
         Cancel
       </button>
       <button
-        class="bg-blue-500 hover:bg-blue-700 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
+        class="bg-red-600 hover:bg-red-400 text-white text-2xl font-bold mb-5 py-2 px-4 rounded"
         @click="
-          deleteMapNote();
-          isOpen = false;
+          deleteMapPin(mapPin);
+          $emit('close');
         "
       >
         Delete
@@ -29,13 +70,11 @@
 </template>
 
 <script setup>
-//importing defineProps should not be needed as we are using <script setup>
-//But it is not working without it.
-//EsLint is complaining about it.
-import { defineProps } from "vue";
-import useMapNotes from "@/modules/useMapNotes.js";
-const props = defineProps({ mapNote: String });
-const { deleteMapNote } = useMapNotes();
+import { defineProps, toRef } from "vue";
+import useMapPin from "@/modules/useMapPins.js";
+const { editMapPin, deleteMapPin } = useMapPin();
+const props = defineProps(["mapPin"]);
+const mapPin = toRef(props, "mapPin");
 </script>
 
 <style lang="scss" scoped></style>
