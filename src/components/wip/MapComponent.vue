@@ -1,9 +1,12 @@
 <template>
+  <!-- Positioned outside the loop of Pins. 
+       To demonstrate the can be used from inside a loop.  -->
   <teleport to="body">
     <div
       class="modal backdrop-brightness-50 fixed w-screen h-screen top-0 md:left-[8.33334%] flex justify-center items-center z-50"
       v-if="isOpen"
     >
+      <!-- A prop is passed into the EditNoteComponent and listening for the close emit -->
       <EditNoteComponent
         :mapPin="selectedMapPin"
         @close="isOpen = false"
@@ -77,16 +80,24 @@ const { mapPins, getMapPinsData, addMapPin } = useMapPins();
 const mapPin = ref([]);
 const isOpen = ref(false);
 const selectedMapPin = ref(null);
+const selectedImage = ref(null);
 
 onMounted(() => {
   getMapImages();
 });
 
+// This function is called when an image is selected.
+// It gets the selectedMapPins related to the map that was chosen.
+// The SelectedImage might not be nescessary
+// But without it I had strange issues.
 const selectImage = (image) => {
   selectedImage.value = image;
   getMapPinsData(selectedImage);
 };
 
+// This function is called when a position on the map is clicked.
+// It calculates the percentage of the position clicked on the map.
+// It then adds the pin to the database through the addMapPin function found in useMapPins.js.
 const clicked = (e) => {
   var rect = e.target.getBoundingClientRect();
   mapPin.value.xPosition = ((e.clientX - rect.left) / rect.width) * 100;
@@ -95,12 +106,13 @@ const clicked = (e) => {
   addMapPin(mapPin);
 };
 
+// This function is called when a pin is clicked.
+// It sets the selectedMapPin to the pin that was clicked.
+// It stops the event from creating another pin on the map below.
 const editNotes = (e, pin) => {
   e.stopPropagation();
   selectedMapPin.value = pin;
 };
-
-const selectedImage = ref(null);
 </script>
 
 <style lang="scss" scoped></style>

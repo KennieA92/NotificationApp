@@ -112,7 +112,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
     else {
-      next('/');
+      next('/login');
     }
   }
   else if (requiresAuth) {

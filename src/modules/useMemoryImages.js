@@ -6,6 +6,8 @@ import { ref } from 'vue';
 const useMemoryImages = () => {
     const memoryImages = ref([]);
     const memoryImagesDataRef = collection(db, "memoryimages");
+    // Query used to check if the Image was uploaded by the current user.
+    // If it was, then it will be returned when getMemoryImages is called.
     const memoryImagesDataQueryRef = query(memoryImagesDataRef, where("author", "==", auth.currentUser.uid));
     const { deleteFile } = useMemoryStorage();
 
@@ -31,8 +33,9 @@ const useMemoryImages = () => {
 
 
     const addMemoryImage = async (memoryImage) => {
+        // Check if memoryImage is not null
+        // This means that the user has finished uploading an image.
         if (memoryImage) {
-            debugger;
             await addDoc(memoryImagesDataRef, {
                 author: auth.currentUser.uid,
                 url: memoryImage

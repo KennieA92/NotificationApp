@@ -70,10 +70,19 @@
 </template>
 
 <script setup>
+// the defineProps should not be needed, but it is
+// without it I get eslint errors
+// with it I get a notification that it is not needed.
+// I am not sure what to believe, but this works. ¯\_(ツ)_/¯
 import { defineProps, toRef } from "vue";
 import useMapPin from "@/modules/useMapPins.js";
 const { editMapPin, deleteMapPin } = useMapPin();
+
+// This is the way to access props using the Script Setup syntax
+// https://vuejs.org/guide/components/props.html#props-declaration
 const props = defineProps(["mapPin"]);
+
+// Converting the prop to a Ref.
 const mapPin = toRef(props, "mapPin");
 </script>
 

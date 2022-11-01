@@ -1,9 +1,9 @@
 <template>
-    <section id="explore-section">
-        <BannerComponent />
-        <PinGameComponent />
-        <MemoryGameComponent />
-    </section>
+  <section id="explore-section">
+    <BannerComponent />
+    <PinGameComponent />
+    <MemoryGameComponent />
+  </section>
 </template>
 
 <script setup>

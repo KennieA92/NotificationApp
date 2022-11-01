@@ -32,7 +32,6 @@ const useMapImages = () => {
 
     const addMapImage = async (mapImages) => {
         if (mapImages) {
-            debugger;
             await addDoc(mapImagesDataRef, {
                 author: auth.currentUser.uid,
                 url: mapImages

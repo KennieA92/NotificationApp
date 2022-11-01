@@ -1,8 +1,8 @@
 <template>
   <div class="relative flex bg-primary">
-    <NavigationComponent class="min-w-9/12 lg:w-2/12" />
+    <NavigationComponent class="lg:w-2/12" />
     <Suspense>
-      <router-view class="w-full lg:w-10/12" />
+      <router-view class="lg:w-10/12" />
     </Suspense>
   </div>
 </template>

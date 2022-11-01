@@ -44,7 +44,6 @@ const useMapStorage = () => {
     });
   }
 
-
   return {
     uploadFile,
     deleteFile

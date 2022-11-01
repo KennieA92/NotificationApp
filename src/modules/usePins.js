@@ -7,8 +7,6 @@ const usePins = () => {
     const pinsDataRef = collection(db, "homedivpins");
     const pinsDataQueryRef = query(pinsDataRef, where("author", "==", auth.currentUser.uid));
 
-
-
     const getPinsData = () => {
         onSnapshot(pinsDataQueryRef, (snapshot) => {
             pins.value = snapshot.docs.map(doc => {
@@ -19,6 +17,7 @@ const usePins = () => {
             });
         })
     }
+
     const deletePins = () => {
         pins.value.forEach(async (pin) => {
             if (pin.author === auth.currentUser.uid) {
@@ -26,8 +25,6 @@ const usePins = () => {
             }
         });
     }
-
-
 
     const addPin = async (x, y) => {
         if (x && y) {
