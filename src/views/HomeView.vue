@@ -5,7 +5,7 @@
   <section id="home-section" class="snap-y snap-smooth h-screen overflow-y-scroll">
     <BannerComponent class="snap-start" />
     <div
-      class="snap-start bg-text-color h-1/2 flex items-center text-center justify-center text-4xl"
+      class="snap-start bg-primary-color h-1/2 flex items-center text-center justify-center text-4xl"
     >
       <h1 class="w-4/5 md:w-full">Login to access more of our site!</h1>
     </div>
