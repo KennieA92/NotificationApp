@@ -60,8 +60,10 @@
             <a
               class="rounded-t bg-text-color hover:bg-gray-400 py-3 px-4 block"
               @click="selectImage(image)"
-              >Map Number</a
             >
+              <div v-if="image.name">{{ image.name }}</div>
+              <div v-else>map</div>
+            </a>
           </li>
         </ul>
       </div>
